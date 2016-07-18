@@ -19,13 +19,14 @@ fi
 
 if [ "$DEPLOY_TASKS" ]; then
   cd $build_dir
+  echo "running.. $DEPLOY_TASKS"
   $DEPLOY_TASKS
   cd -
 fi
 
 if [ "$MIGRATE_REFRESH" == "true" ]; then
   cd $build_dir
-  echo "Runing.. php artisan migrate:refresh --seed --force"
+  echo "Running.. php artisan migrate:refresh --seed --force"
   php artisan migrate:refresh --seed --force
   cd -
 fi
