@@ -1,5 +1,4 @@
-## Heroku buildpack for running your task (php artisan commands) on deploy - For development purpose only.
-
+## Heroku buildpack for running your task (php artisan commands) on deploy
 This buildpack is intended for use after the regular [php-buildpack].
 
 ## Usage
