@@ -19,7 +19,7 @@ fi
 
 if [ "$DEPLOY_TASKS" ]; then
   cd $build_dir
-  `$DEPLOY_TASKS`
+  $DEPLOY_TASKS
   cd -
 fi
 
