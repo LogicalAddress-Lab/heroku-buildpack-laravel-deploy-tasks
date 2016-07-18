@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e            # fail fast
+set -o pipefail   # don't ignore exit codes when piping output
+
+# Configure directories
+build_dir=$1
+cache_dir=$2
+env_dir=$3
+
+blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
+if [ -d "$env_dir" ]; then
+  for e in $(ls $env_dir); do
+    echo "$e" | grep -qvE "$blacklist_regex" &&
+      export "$e=$(cat $env_dir/$e)"
+    :
+  done
+fi
+
+if [ -z "$DEPLOY_TASKS" ]; then
+  cd $build_dir
+  echo "DEPLOY_TASKS has not been set"
+  echo "You can set it with:"
+  echo 'heroku config:set DEPLOY_TASKS="set to any thing"'
+  cd -
+fi
+
+if [ "$MIGRATE_REFRESH" == "true" ]; then
+  cd $build_dir
+  echo "Runing.. php artisan migrate:refresh --seed --force"
+  php artisan migrate:refresh --seed --force
+  cd -
+fi

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+
+if (test -f $1/server.php) then
+  echo "Laravel Artisan"
+  exit 0
+else
+  echo "no"
+  exit 1
+fi
