@@ -30,6 +30,7 @@ Set the MIGRATE_REFRESH environment to true to reset your app each time you depl
 
 ```
 heroku config:set MIGRATE_REFRESH='true' --app nhub
+heroku config:set MIGRATE_REFRESH='true' --app
 ```
 
 ## License
