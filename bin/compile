@@ -17,11 +17,9 @@ if [ -d "$env_dir" ]; then
   done
 fi
 
-if [ -z "$DEPLOY_TASKS" ]; then
+if [ "$DEPLOY_TASKS" ]; then
   cd $build_dir
-  echo "DEPLOY_TASKS has not been set"
-  echo "You can set it with:"
-  echo 'heroku config:set DEPLOY_TASKS="set to any thing"'
+  `$DEPLOY_TASKS`
   cd -
 fi
 
