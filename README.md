@@ -21,8 +21,8 @@ Configure DEPLOY_TASKS environment variable with anything in the build directory
 
 ```
 heroku config:set DEPLOY_TASKS='true' --app nhub
-heroku config:set DEPLOY_TASKS='php artisan migrate:reset && php artisan migrate' --app nhub
-heroku config:set DEPLOY_TASKS='php artisan migrate:reset && php artisan migrate && php artisan db:seed' --app nhub
+heroku config:set DEPLOY_TASKS='php artisan migrate:reset && php artisan migrate --force' --app nhub
+heroku config:set DEPLOY_TASKS='php artisan migrate:reset && php artisan migrate --force && php artisan db:seed' --app nhub
 ```
 
 Set the MIGRATE_REFRESH environment to true to reset your app each time you deploy. This simply runs 'php artisan migrate:refresh and php artisan db:seed' on deploy:
